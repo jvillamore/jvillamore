@@ -1,0 +1,50 @@
+<form [formGroup]="productForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Shipping Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="ID" formControlName="id">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Title" formControlName="title">
+            <mat-error *ngIf="productForm.controls['title'].hasError('required')">
+              Title  is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Price" formControlName="price">
+            <mat-error *ngIf="productForm.controls['price'].hasError('required')">
+              Price  is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="productForm.controls['price'].hasError('price_invalid')">
+              Price  is invalid
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Address" formControlName="address"></textarea>
+            <mat-error *ngIf="productForm.controls['address'].hasError('required')">
+              Address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,0 +1,46 @@
+
+<input type="text" [(ngModel)]="title">
+{{
+  title 
+}}
+<input type="text" [(ngModel)]="expo">
+{{
+  expo | exponential 
+}}
+
+
+<button (click)="addItem()" >Add Item</button>
+<div *ngIf="title != 'JUan'" >
+  Este es un IF
+</div>
+<div [ngSwitch]="title">
+  <p *ngSwitchCase="'Juan'">Juan</p>
+  <p *ngSwitchCase="'Pedro'">Pedro</p>
+  <p *ngSwitchCase="'Pablo'">Pablo</p>
+  <p *ngSwitchCase="'Marco'">Marco</p>
+  <p *ngSwitchDefault>Default</p>
+
+</div>
+
+
+
+<ul>
+  <li *ngIf="items.length === 0" >
+    Lista vacia
+  </li>
+  <li *ngFor="let name of items; index as i ">
+    {{name}} {{i}}
+    <button (click)="deleteItem(i)" >Remove</button>
+  </li>
+
+
+</ul>
+
+
+<!--<div *ngFor="let product of products">
+  {{ product.title}}
+  <img [src]="product.image" alt="">
+  {{product.price}}
+  {{product.description}}
+
+</div>-->

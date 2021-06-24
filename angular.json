@@ -10,7 +10,7 @@
           "style": "scss"
         },
         "@schematics/angular:application": {
-          "strict": true
+          "strict": false
         }
       },
       "root": "",
@@ -31,7 +31,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/flexboxgrid/css/flexboxgrid.min.css",
+              "src/styles.scss",
+              "./node_modules/swiper/swiper.scss"
             ],
             "scripts": []
           },
@@ -57,6 +60,27 @@
               ],
               "outputHashing": "all"
             },
+            "stag": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stag.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -73,6 +97,9 @@
           "configurations": {
             "production": {
               "browserTarget": "angular-store:build:production"
+            },
+            "stag": {
+              "browserTarget": "angular-store:build:stag"
             },
             "development": {
               "browserTarget": "angular-store:build:development"
@@ -99,13 +126,26 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "angular-store"
+  "defaultProject": "angular-store",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

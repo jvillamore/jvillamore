@@ -1,0 +1,27 @@
+<table mat-table [dataSource]="products">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let prod"> {{prod.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let prod"> {{prod.title}} </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Descriptions </th>
+        <td mat-cell *matCellDef="let prod"> {{prod.description}} </td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let prod"> {{prod.price}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> actions </th>
+        <td mat-cell *matCellDef="let prod">
+            <a mat-raised-button [routerLink]="['edit',prod.id]">Editar</a>
+            <button mat-raised-button color="warn" (click)="deleteProduct(prod.id)">Eliminar</button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef='columnsToDisplay'></tr>
+    <tr mat-row *matRowDef='let myRowData; columns: columnsToDisplay'></tr>
+</table>
