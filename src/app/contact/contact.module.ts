@@ -11,7 +11,8 @@ import {SharedModule} from '../shared/shared.module'
     imports:[
         ContactRoutingModule,
         CommonModule,
-        SharedModule
+        SharedModule,
+
     ]
 })
 export class ContactModule {
